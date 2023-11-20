@@ -7,8 +7,24 @@ import lombok.*;
 import java.time.Instant;
 import java.util.UUID;
 
+/**
+ * Entity representing a verification token used for user account verification.
+ * This entity is mapped to the "verification_token" table in the database.
+ *
+ * Annotations like @Entity, @Table, @ManyToOne, @NotNull, and @Column indicate
+ * the entity's nature and constraints on its fields.
+ *
+ * The Lombok annotations @NoArgsConstructor, @AllArgsConstructor, @Builder,
+ * @Getter, and @Setter are used to reduce boilerplate code.
+ *
+ * Fields:
+ * - id (UUID): The unique identifier for the verification token, generated using UUID strategy.
+ * - user (User): The associated User entity for whom the token is generated. Cannot be null.
+ * - createdAt (Instant): The timestamp when the token was created. Defaults to the current time.
+ * - verifiedAt (Instant): The timestamp when the token was verified.
+ */
 @Entity
-@Table
+@Table(name = "verification_token")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

@@ -2,10 +2,15 @@ package com.aleos.repository;
 
 import com.aleos.model.VerificationToken;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 
-@Repository
+/**
+ * VerificationTokenRepository is an interface for managing VerificationToken entities in the database.
+ * It extends JpaRepository, providing standard CRUD operations for VerificationToken entities identified by a UUID.
+ *
+ * Methods:
+ * - Extends all standard JpaRepository methods including save, findById, findAll, and delete.
+ */
 public interface VerificationTokenRepository extends JpaRepository<VerificationToken, UUID> {
 }
