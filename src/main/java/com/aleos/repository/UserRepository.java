@@ -2,13 +2,17 @@ package com.aleos.repository;
 
 import com.aleos.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
+/**
+ * UserRepository is an interface for managing User entities in the database.
+ * It extends JpaRepository, providing standard CRUD operations.
+ *
+ * Methods:
+ * - findByEmail: Retrieves a user by their email address.
+ */
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    Optional<UserDetails> findByEmail(String email);
+    Optional<User> findByEmail(String email);
 }
