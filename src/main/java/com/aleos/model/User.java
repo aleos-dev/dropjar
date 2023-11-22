@@ -7,20 +7,37 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import org.hibernate.annotations.NaturalId;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Collection;
-import java.util.List;
 import java.util.Objects;
 
+/**
+ * Represents a user in the system.
+ * This entity is mapped to the "users" table in the database.
+ *
+ * Annotations such as @NotNull, @Size, @Email, and @Enumerated specify
+ * validation and mapping constraints for the respective fields.
+ * The class uses Lombok annotations like @Getter, @Setter, @NoArgsConstructor,
+ * and @AllArgsConstructor to reduce boilerplate code.
+ *
+ * The equals and hashCode methods are overridden to ensure equality
+ * based on the email field, which is marked as the natural ID of the entity.
+ *
+ * Fields:
+ * - id (Integer): The unique identifier for the user.
+ * - firstname (String): The user's first name. Must be between 3 and 100 characters.
+ * - lastname (String): The user's last name. Must be between 3 and 100 characters.
+ * - email (String): The user's email address. Must be unique and valid.
+ * - password (String): The user's password.
+ * - role (Role): The user's role within the system. Must not be null.
+ * - active (Boolean): Indicates whether the user is active. Defaults to false.
+ */
 @Entity
 @Table(name = "users")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class User implements UserDetails {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -70,20 +87,5 @@ public class User implements UserDetails {
     @Override
     public final int hashCode() {
         return Objects.hash(email);
-    }
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(role);
-    }
-
-    @Override
-    public String getUsername() {
-        return email;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return active;
     }
 }
