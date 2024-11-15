@@ -1,0 +1,17 @@
+services:
+  # PostgreSQL Database
+  postgres-db:
+    image: postgres:17
+    container_name: postgres-db
+    env_file:
+      - .env
+    ports:
+      - "${POSTGRES_PORT}:5432"
+    volumes:
+      - ${DB_DATA_HOME}/dropjar_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRED_DB" ]
+      interval: 5s
+      retries: 5
+      timeout: 5s
+    restart: always
