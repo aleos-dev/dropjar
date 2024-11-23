@@ -1,0 +1,102 @@
+<!-- src/main/resources/templates/sign-up.html -->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title layout:fragment="title">Sign Up</title>
+
+    <th:block layout:fragment="head">
+        <link rel="stylesheet" th:href="@{/resources/css/auth.css}">
+    </th:block>
+</head>
+
+<body>
+<div layout:fragment="content">
+    <main class="flex-fill d-flex justify-content-center align-items-center p-3">
+        <div class="signup-container bg-light bg-opacity-75 p-4 rounded">
+            <h2 class="mb-4">Sign Up</h2>
+
+            <!-- Feedback Messages -->
+            <div th:if="${error}" class="alert alert-danger" role="alert">
+                <p th:text="${error}"></p>
+            </div>
+            <form th:action="@{/auth/sign-up}" th:object="${signUpPayload}" method="post" novalidate>
+                <div class="form-group">
+                    <label for="firstname">Firstname:</label>
+                    <input type="text" id="firstname" th:field="*{firstname}" class="form-control" required
+                           aria-describedby="firstnameHelp">
+                    <div class="invalid-feedback">
+                        Please enter your firstname.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="lastname">Lastname:</label>
+                    <input type="text" id="lastname" th:field="*{lastname}" class="form-control" required
+                           aria-describedby="lastnameHelp">
+                    <div class="invalid-feedback">
+                        Please enter your lastname.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" th:field="*{email}" class="form-control"
+                           required aria-describedby="emailHelp">
+                    <div class="invalid-feedback">
+                        Please enter a valid email address.
+                    </div>
+                </div>
+
+                <div class="form-group position-relative">
+                    <label for="password" data-bs-toggle="tooltip" data-bs-placement="right"
+                           title="Your password must be at least 3 characters long and include both letters and numbers.">Password:</label>
+                    <div class="input-group">
+                        <input type="password" id="password" th:field="*{password}" class="form-control" required
+                               aria-describedby="passwordHelp">
+                        <button type="button" class="btn btn-outline-secondary" id="togglePassword">
+                            <i class="bi bi-eye-slash" id="togglePasswordIcon"></i>
+                        </button>
+                    </div>
+                    <div id="passwordHelp" class="form-text">Your password must be at least 3 characters long and
+                        include
+                        both letters and numbers.
+                    </div>
+                    <div class="invalid-feedback">
+                        Please provide a valid password.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" class="form-control" required
+                           aria-describedby="confirmPasswordHelp">
+                    <div class="invalid-feedback">
+                        Please confirm your password.
+                    </div>
+                </div>
+
+                <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" role="alert">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('*')}" th:text="${err}"></li>
+                    </ul>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+            </form>
+
+            <div class="mt-3 text-center">
+                <p>Already have an account? <a th:href="@{/auth/sign-in}">Sign in here</a></p>
+            </div>
+        </div>
+    </main>
+</div>
+
+<th:block layout:fragment="scripts">
+    <script th:src="@{/resources/js/form-validator.js}"></script>
+    <script th:src="@{/resources/js/password-validator.js}"></script>
+    <script th:src="@{/resources/js/tooltip-init.js}"></script>
+</th:block>
+</body>
+</html>

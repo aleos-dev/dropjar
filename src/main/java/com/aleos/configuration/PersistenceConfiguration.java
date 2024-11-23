@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
@@ -22,6 +23,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:dbconfig.properties")
 @EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.aleos.repository")
 @AllArgsConstructor
 public class PersistenceConfiguration {
 
@@ -52,7 +54,7 @@ public class PersistenceConfiguration {
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
         factory.setDataSource(dataSource);
         factory.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        factory.setPackagesToScan("com.aleos.model");
+        factory.setPackagesToScan(env.getProperty("hibernate.entity.package"));
         factory.setJpaProperties(additionalHibernateProperties());
 
         return factory;
@@ -69,6 +71,7 @@ public class PersistenceConfiguration {
         hikariConfig.setUsername(env.getProperty("POSTGRES_USER"));
         hikariConfig.setPassword(env.getProperty("POSTGRES_PASSWORD"));
 
+        hikariConfig.setDriverClassName(env.getProperty("driverClassName", "org.postgresql.Driver"));
         hikariConfig.setMaximumPoolSize(Integer.parseInt(env.getProperty("maximumPoolSize", "10")));
         hikariConfig.setMinimumIdle(Integer.parseInt(env.getProperty("minimumIdle", "3")));
         hikariConfig.setIdleTimeout(Long.parseLong(env.getProperty("idleTimeout", "300000")));
