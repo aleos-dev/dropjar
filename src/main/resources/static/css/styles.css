@@ -20,10 +20,6 @@
     font-weight: bold;
 }
 
-/* Main Content Adjustments */
-main {
-    margin-left: 250px; /* Width of the sidebar */
-}
 
 /* Adjust navbar brand */
 .navbar-brand {
