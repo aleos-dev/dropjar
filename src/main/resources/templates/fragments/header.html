@@ -1,0 +1,49 @@
+<!-- src/main/resources/templates/fragments/header.html -->
+<div th:fragment="header">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container-fluid">
+      <!-- Brand Logo and Name with Tagline -->
+      <a class="navbar-brand d-flex align-items-center" href="/" title="DropJar - File Storage with a Twist">
+        <!-- Replace with your logo image if available -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-cloud-upload-fill me-2" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 0a5.53 5.53 0 0 0-4.953 3.68A5.5 5.5 0 0 0 .5 9.5c0 3.038 2.462 5.5 5.5 5.5h7a3.5 3.5 0 0 0 0-7h-1v-2h1a1.5 1.5 0 0 0 0-3H5.5a1.5 1.5 0 0 0-1.45 1.09A5.53 5.53 0 0 0 8 0zm3.354 10.646a.5.5 0 1 1-.708.708L8 8.707V14.5a.5.5 0 0 1-1 0V8.707l-2.646 2.647a.5.5 0 0 1-.708-.708l3-3a.498.498 0 0 1 .708 0l3 3z"/>
+        </svg>
+        <div>
+          <span>DropJar</span>
+          <small class="d-none d-md-block text-muted" style="font-size: 0.6em;">"Because your cat videos deserve a safe home too!"</small>
+        </div>
+      </a>
+      <!-- Navbar Toggler for Mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#dropjarNavbar" aria-controls="dropjarNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="dropjarNavbar">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/}">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/features}" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Explore the magical features!">Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/pricing}">Pricing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/about}">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/contact}">Contact</a>
+          </li>
+          <!-- Authentication Links -->
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/login}">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link btn btn-primary text-white ms-2" th:href="@{/sign-up}">Sign Up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>
