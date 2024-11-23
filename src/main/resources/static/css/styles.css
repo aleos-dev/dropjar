@@ -1,0 +1,89 @@
+/* src/main/resources/static/css/styles.css */
+
+/* Sidebar Styling */
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 60px; /* Height of the header */
+    left: 0;
+    padding-top: 20px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+}
+
+.sidebar .nav-link {
+    color: #333;
+}
+
+.sidebar .nav-link.active {
+    background-color: #e9ecef;
+    font-weight: bold;
+}
+
+/* Main Content Adjustments */
+main {
+    margin-left: 250px; /* Width of the sidebar */
+}
+
+/* Adjust navbar brand */
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+/* Style for nav-link buttons */
+.navbar-nav .btn {
+    border-radius: 20px;
+    padding: 5px 15px;
+}
+
+/* Tooltip styles */
+.tooltip-inner {
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Hover effects for nav links */
+.navbar-nav .nav-link:hover {
+    color: #0d6efd; /* Bootstrap primary color */
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .btn-primary:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive tagline */
+.navbar-brand small {
+    display: none;
+}
+
+/* Footer Link Styles */
+footer a {
+    color: #0d6efd; /* Bootstrap primary color */
+    text-decoration: none;
+}
+
+footer a:hover {
+    color: #0a58ca; /* Darker shade on hover */
+    text-decoration: underline;
+}
+
+/* Footer Tagline Styling */
+.footer-tagline {
+    font-weight: bold;
+}
+
+/* Ensure footer background remains light */
+footer.bg-light {
+    background-color: #f8f9fa !important;
+}
+
+@media (min-width: 768px) {
+    .navbar-brand small {
+        display: block;
+    }
+}
